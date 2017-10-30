@@ -84,7 +84,7 @@ libvirt:!::yfc
 libvirt-qemu:!::libvirt-qemu
 avahi:!::
 usrp:!::
-sambashare:!::
+sambashare:!::yfc
 kpadmins:!::
 dradis:!::
 beef-xss:!::

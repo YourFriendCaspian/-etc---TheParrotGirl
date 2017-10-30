@@ -106,6 +106,15 @@ audio/x-gsm; /usr/bin/play -t gsm %s
 audio/x-wav; /usr/bin/play -t wav %s
 application/x-dvi; /usr/bin/xdvi %s; description=TeX DVI; test=test -n "$DISPLAY"; nametemplate=%s.dvi
 text/plain; more %s; needsterminal
+inode/directory; kfmclient openURL %s inode/directory; test=test -n "$DISPLAY"
+text/html; kfmclient openURL %s text/html; test=test -n "$DISPLAY"
+application/xhtml+xml; kfmclient openURL %s text/html; test=test -n "$DISPLAY"
+application/xml; kfmclient openURL %s text/html; test=test -n "$DISPLAY"
+application/x-webarchive; kfmclient openURL %s application/x-webarchive; test=test -n "$DISPLAY"
+x-scheme-handler/mailto; kmailservice %s; test=test -n "$DISPLAY"
+x-scheme-handler/telnet; ktelnetservice %s; test=test -n "$DISPLAY"
+x-scheme-handler/rlogin; ktelnetservice %s; test=test -n "$DISPLAY"
+x-scheme-handler/ssh; ktelnetservice %s; test=test -n "$DISPLAY"
 application/x-abiword; abiword %s; test=test -n "$DISPLAY"
 text/x-abiword; abiword %s; test=test -n "$DISPLAY"
 text/x-xml-abiword; abiword %s; test=test -n "$DISPLAY"
@@ -388,6 +397,9 @@ text/x-c++; gvim -f %s; test=test -n "$DISPLAY"
 x-scheme-handler/irc; hexchat --no-auto --no-plugins %s; test=test -n "$DISPLAY"
 x-scheme-handler/ircs; hexchat --no-auto --no-plugins %s; test=test -n "$DISPLAY"
 application/x-java-jnlp-file; /usr/bin/javaws %s; test=test -n "$DISPLAY"
+x-scheme-handler/telnet; ktelnetservice5 %s; test=test -n "$DISPLAY"
+x-scheme-handler/rlogin; ktelnetservice5 %s; test=test -n "$DISPLAY"
+x-scheme-handler/ssh; ktelnetservice5 %s; test=test -n "$DISPLAY"
 text/plain; leafpad %s; test=test -n "$DISPLAY"
 application/vnd.openofficeorg.extension; libreoffice --math %s; test=test -n "$DISPLAY"
 x-scheme-handler/vnd.libreoffice.cmis; libreoffice --math %s; test=test -n "$DISPLAY"
@@ -478,6 +490,19 @@ x-scheme-handler/https; epiphany --incognito-mode %s; test=test -n "$DISPLAY"
 multipart/related; epiphany --incognito-mode %s; test=test -n "$DISPLAY"
 application/x-mimearchive; epiphany --incognito-mode %s; test=test -n "$DISPLAY"
 message/rfc822; epiphany --incognito-mode %s; test=test -n "$DISPLAY"
+application/vnd.debian.binary-package; plasma-discover %s; test=test -n "$DISPLAY"
+application/x-rpm; plasma-discover %s; test=test -n "$DISPLAY"
+x-scheme-handler/appstream; plasma-discover %s; test=test -n "$DISPLAY"
+inode/directory; dolphin %s; test=test -n "$DISPLAY"
+application/x-font-ttf; kfontview %s; test=test -n "$DISPLAY"
+application/x-font-type1; kfontview %s; test=test -n "$DISPLAY"
+application/x-font-otf; kfontview %s; test=test -n "$DISPLAY"
+application/x-font-pcf; kfontview %s; test=test -n "$DISPLAY"
+application/x-font-bdf; kfontview %s; test=test -n "$DISPLAY"
+application/vnd.kde.fontspackage; kfontview %s; test=test -n "$DISPLAY"
+application/x-ksysguard; ksysguard %s; test=test -n "$DISPLAY"
+application/x-kwallet; kwalletmanager5 %s; test=test -n "$DISPLAY"
+text/plain; kwrite %s; test=test -n "$DISPLAY"
  text/x-c++src; qtcreator %s; test=test -n "$DISPLAY"
 text/x-c++hdr; qtcreator %s; test=test -n "$DISPLAY"
 text/x-xsrc; qtcreator %s; test=test -n "$DISPLAY"
@@ -487,6 +512,7 @@ application/vnd.qt.xml.resource; qtcreator %s; test=test -n "$DISPLAY"
 text/plain; pluma %s; test=test -n "$DISPLAY"
 x-scheme-handler/spice; remote-viewer %s; test=test -n "$DISPLAY"
 application/x-virt-viewer; remote-viewer %s; test=test -n "$DISPLAY"
+text/x-apt-sources-list; software-properties-kde %s; test=test -n "$DISPLAY"
 application/x-sqlite; sqlitebrowser %s; test=test -n "$DISPLAY"
 text/english; vim %s; needsterminal
 text/plain; vim %s; needsterminal
@@ -648,4 +674,8 @@ application/x-gtar; /bin/tar tvf '%s'; print=/bin/tar tvf - | print text/plain:-
 application/x-ustar; /bin/tar tvf '%s'; print=/bin/tar tvf - | print text/plain:-; copiousoutput
 text/*; more %s; needsterminal
 text/*; view %s; edit=vi %s; compose=vi %s; needsterminal
+application/msword; wordview %s; description="MS Word Text"; test=test "$DISPLAY"
+application/msword; catdoc %s; copiousoutput; description="MS Word Text";
+application/vnd.ms-excel; xls2csv %s; copiousoutput; description="MS Excel sheet";
+application/vnd.ms-powerpoint; catppt %s; copiousoutput; description="MS PowerPoint presentation";
 application/vnd.debian.binary-package; /usr/lib/mime/debian-view %s; needsterminal; description=Debian GNU/Linux Package; nametemplate=%s.deb

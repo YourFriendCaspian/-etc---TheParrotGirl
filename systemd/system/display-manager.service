@@ -1,1 +1,1 @@
-/lib/systemd/system/lightdm.service
+/lib/systemd/system/sddm.service

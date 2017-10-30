@@ -93,3 +93,4 @@ mlocate:x:130:
 Debian-snmp:x:151:
 wireshark:x:152:
 gluster:x:153:
+sddm:x:154:
