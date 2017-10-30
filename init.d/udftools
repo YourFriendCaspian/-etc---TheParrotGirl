@@ -1,0 +1,146 @@
+#! /bin/sh
+#
+# udftools
+#     Call pktsetup to set up packet device associations
+#
+# Written and Copyright 2003 Richard Atterer <atterer<at>debian.org>, GPLv2.
+# * Thanks to Aleksandar Topuzovic <aleksandar.topuzovic<at>fer.hr> for an
+#   initial version of the script.
+# * Thanks to Cyrille Chépélov <cyrille<at>chepelov.org> for additional
+#   help with the specifics of 2.6 packet writing.
+# * Thanks to Christopher Martin <christopher.martin<at>utoronto.ca>
+#   for fixes to make things work on systems that have "no udev + new
+#   interface" or "udev + old interface"
+
+### BEGIN INIT INFO
+# Provides:          udftools
+# Required-Start:    $remote_fs 
+# Required-Stop:     $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Set up packet writing devices
+# Description:       Set up packet writing devices, i.e. tell the kernel that
+#                    e.g. device /dev/hdc is to be made available as packet
+#                    writing device /dev/pktcdvd/0.
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+set -e
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+DESC="udftools packet writing"
+PKTSETUP=/usr/sbin/pktsetup
+DEFAULTFILE=/etc/default/udftools
+DEVICES=""
+NEWINTNAMES="0 1 2 3"
+UDEVNAMES="/dev/pktcdvd/0 /dev/pktcdvd/1 /dev/pktcdvd/2 /dev/pktcdvd/3"
+UDEV=""
+NEWINT=""
+
+if test -e /dev/.devfsd; then
+    OLDINTNAMES="/dev/pktcdvd/0 /dev/pktcdvd/1 /dev/pktcdvd/2 /dev/pktcdvd/3"
+else
+    OLDINTNAMES="/dev/pktcdvd0 /dev/pktcdvd1 /dev/pktcdvd2 /dev/pktcdvd3"
+fi
+
+if test -f "$DEFAULTFILE"; then
+    # Read user settings
+    . "$DEFAULTFILE"
+fi
+test -x "$PKTSETUP" || exit 0
+
+# Only execute modprobe if DEVICES set - avoid possible problems with
+# the module for people who don't use packet writing.
+if test -n "$DEVICES"; then
+    modprobe --quiet pktcdvd || true
+    if test -z "$NEWINT"; then # User did not set NEWINT, try auto-detection
+        if dpkg --compare-versions `uname -r` ge 2.6.8; then
+            NEWINT=true
+        else
+            NEWINT=false
+        fi
+    fi
+    if test -z "$UDEV"; then # User did not set UDEV, try auto-detection
+        if test -e /run/udev || test -e /dev/.udev; then
+            UDEV=true
+        else
+            UDEV=false
+        fi
+    fi
+fi
+
+dostart() {
+    if test -z "$DEVICES"; then
+        log_action_msg "Not starting $DESC, no devices listed in $DEFAULTFILE"
+    else
+        log_action_begin_msg "Starting $DESC"
+        if $NEWINT; then
+            set $NEWINTNAMES
+            for DEVICE in $DEVICES; do
+                log_action_cont_msg "/dev/pktcdvd/$1=$DEVICE"
+                $PKTSETUP "$1" "$DEVICE"
+                shift
+            done
+        else
+            if $UDEV; then
+                set $UDEVNAMES
+            else
+                set $OLDINTNAMES
+            fi
+            for DEVICE in $DEVICES; do
+                log_action_cont_msg "$1=$DEVICE"
+                $PKTSETUP "$1" "$DEVICE"
+                shift
+            done
+        fi
+        log_action_end_msg 0
+    fi
+}
+
+dostop() {
+    if test -z "$DEVICES"; then
+        log_action_msg "Not stopping $DESC, no devices listed in $DEFAULTFILE"
+    else
+        log_action_begin_msg "Stopping $DESC"
+        if $NEWINT; then
+            set $NEWINTNAMES
+            for DEVICE in $DEVICES; do
+                log_action_cont_msg "/dev/pktcdvd/$1=$DEVICE"
+                $PKTSETUP -d "$1" || true
+                shift
+            done
+        else
+            if $UDEV; then
+                set $UDEVNAMES
+            else
+                set $OLDINTNAMES
+            fi
+            for DEVICE in $DEVICES; do
+                log_action_cont_msg "$1=$DEVICE"
+                $PKTSETUP -d "$1" || true
+                shift
+            done
+        fi
+        log_action_end_msg 0
+    fi
+}
+
+set +e
+
+case "$1" in
+    start) dostart;;
+    stop)  dostop;;
+    restart|force-reload) dostop; dostart;;
+    status)
+        nmappings=`$PKTSETUP -s | wc -l`
+        log_action_msg "Status of $DESC" "$nmappings device mappings"
+        if test $nmappings -eq 0; then exit 1; fi
+        ;;
+    *)
+        echo "Usage: /etc/init.d/udftools {start|stop|restart|force-reload}" >&2
+        exit 1
+        ;;
+esac
+
+exit 0

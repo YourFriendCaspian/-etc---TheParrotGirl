@@ -1,0 +1,18 @@
+# Drives to register for packet writing:
+# If there is more than one, separate with spaces: DEVICES="/dev/hdd /dev/sr0"
+# Usually, the following should work:
+#DEVICES="/dev/cdrw"
+
+# Pktcdvd patches for kernels 2.6.8 and later use a new interface for
+# talking to the kernel, as well as a new set of device nodes. In case
+# detection of the proper interface on your system fails, override
+# it here. Possible values are "true" or "false".
+#NEWINT=true
+
+# Only when using the new interface do you have the option to choose the
+# names for the packet writing devices. This is ignored otherwise.
+# For example, if DEVICES="/dev/hdd /dev/sr0" and
+# NEWINTNAMES="cdwriter dvdwriter", then /dev/hdd will correspond to
+# /dev/pktcdvd/cdwriter, and /dev/sr0 will correspond to
+# /dev/pktcdvd/dvdwriter. The default setting is NEWINTNAMES="0 1 2 3".
+#NEWINTNAMES="0 1 2 3"

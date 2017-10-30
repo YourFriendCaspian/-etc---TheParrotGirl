@@ -1,0 +1,22 @@
+arpwatch does not support a configuration file, but the systemd unit files
+shipped with Debian allow to launch arpwatch with different configurations on
+each interface
+
+In order to do that, create a file called IFNAME.iface which contains variable
+assignments in sh syntax (comments are allowed). You can use the following
+variables to influence the invocation for that specific interface only:
+* ARGS: overwrite the ARGS from /etc/default/arpwatch
+* PCAP_FILTER: overwrite (or set) the pcap filter
+* IFACE_ARGS: additional options to be passed to arpwatch
+
+See `man 8 arpwatch` for available arguments. Note that the -f, -i and -u
+options are added by the init system and should not used. If you just want to
+apply the options specified in /etc/default/arpwatch for an interface you do
+not need to create a configuration file.
+
+
+For example, if you want to send mails about arpwatch events on eth0 to
+arpwatch+eth0@example.com, you can generate the configuration file using the
+following command:
+
+echo 'IFACE_ARGS="-m arpwatch+eth0@example.com"' > /etc/arpwatch/eth0.iface

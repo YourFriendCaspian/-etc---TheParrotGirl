@@ -1,0 +1,68 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          wmaloader
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: start or stop the wmaloader daemon
+### END INIT INFO
+
+test -f /usr/bin/wmaloader || exit 0
+
+if [ -f /etc/default/wmaloader ] ; then
+    . /etc/default/wmaloader
+fi
+
+if [ "$INTERFACE"x = ""x ] ; then
+    IFACE=""
+else
+    if [ "$1"x = "start"x ] ; then
+        # Bring up a multicast route on this interface if we don't have one
+        /sbin/route -n | grep -q 239.0.0.0
+        if [ $? -ne 0 ] ; then
+            echo Adding a multicast route for the WMA firmware loader
+            route add -net 239.0.0.0 netmask 255.0.0.0 $INTERFACE
+        fi
+    fi
+    IP=`ifconfig $INTERFACE | awk '/inet addr/ {gsub("addr:","");print $2}'`
+    if [ "$IP"x != ""x ] ; then
+        IFACE="--interface $IP"
+    fi
+fi
+
+case "$1" in
+  start)
+    echo Starting the WMA firmware loader
+    if [ "$IMAGE"x = ""x ] ; then
+        echo "Unable to start WMA firmware loader - no image file specified in"
+        echo "/etc/default/wmaloader"
+        exit 0
+    fi
+
+    if [ ! -f "$IMAGE" ] ; then
+        echo "Unable to start WMA firmware loader - image file"
+        echo " \"$IMAGE\" "
+        echo "listed in /etc/default/wmaloader does not exist"
+        exit 0
+    fi
+
+    start-stop-daemon --start --quiet --chuid wmaloader \
+         --exec /usr/bin/wmaloader -- --daemon --image $IMAGE $IFACE
+    ;;
+  stop)
+    echo Stopping the WMA firmware loader
+    start-stop-daemon --stop --quiet --exec /usr/bin/wmaloader
+    ;;
+  restart|force-reload)
+    echo Restarting the WMA firmware loader
+    start-stop-daemon --stop --quiet --exec /usr/bin/wmaloader
+    start-stop-daemon --start --quiet --chuid wmaloader \
+         --exec /usr/bin/wmaloader -- --daemon --image $IMAGE $IFACE
+    ;;
+  *)
+    echo "Usage: /etc/init.d/wmaloader {start|stop|restart}"
+    exit 1
+esac
+
+exit 0

@@ -1,0 +1,4 @@
+#!/bin/sh
+# $Id: rwhod.cron.monthly,v 1.1 2001/10/06 02:09:28 herbert Exp $
+
+find /var/spool/rwho -mindepth 1 -mtime +30 -print0 | xargs -r0 rm

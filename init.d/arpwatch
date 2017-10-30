@@ -1,0 +1,136 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          arpwatch
+# Required-Start:    $network $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: arpwatch daemon
+# Description:       arpwatch daemon
+### END INIT INFO
+# /etc/init.d/arpwatch: v9 2004/08/14 KELEMEN Peter <fuji@debian.org>
+# Based on /etc/init.d/skeleton (1.8  03-Mar-1998  miquels@cistron.nl)
+# 2001/10/26	fuji@debian.org		Support multiple instances.
+# 2001/11/24	fuji@debian.org		Use POSIX-style functions.
+# 2001/12/17	fuji@debian.org		Use --pidfile on startup, fix restart.
+# 2004/08/10	fuji@debian.org		Source /etc/default/arwpatch .
+#					Create datafile if it doesn't exist.
+#					Run daemon only if executable.
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+NAME=arpwatch
+DAEMON=/usr/sbin/$NAME
+DESC="Ethernet/FDDI station monitor daemon"
+DATADIR=/var/lib/$NAME
+
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+### You shouldn't touch anything below unless you know what you are doing.
+
+[ -f /etc/default/arpwatch ] && . /etc/default/arpwatch
+
+# Check whether we have to drop privileges.
+RUNAS_ARGS=""
+if [ -n "$RUNAS" ]; then
+	if getent passwd "$RUNAS" >/dev/null; then
+		RUNAS_ARGS="-u ${RUNAS}"
+	else
+		RUNAS=""
+	fi
+fi
+
+start_instance () {
+	local IFACE=$1
+	local INSTANCE=${NAME}-${IFACE}
+	local IFACE_OPTS="-i ${IFACE} -f ${IFACE}.dat"
+	local DATAFILE=$DATADIR/${IFACE}.dat
+	local ARGS="$ARGS"  # allow locally overwriting ARGS for iface
+	local PCAP_FILTER="$PCAP_FILTER"  # also allow per interface overwriting
+	local IFACE_ARGS=""  # sourced from the config file
+
+	# source iface specific configuration to local variables
+	[ -f "/etc/arpwatch/${IFACE}.iface" ] && . "/etc/arpwatch/${IFACE}.iface"
+
+	echo -n "Starting $DESC: "
+	if [ ! -f $DATAFILE ]; then
+		echo -n "(creating $DATAFILE) "
+		:> $DATAFILE
+	fi
+	if [ -n "$RUNAS" ]; then
+		echo -n "(chown $RUNAS $DATAFILE) "
+		chown $RUNAS $DATAFILE
+	fi
+	start-stop-daemon --start --quiet \
+		--pidfile /var/run/${INSTANCE}.pid \
+		--exec $DAEMON -- $RUNAS_ARGS $IFACE_OPTS $ARGS $IFACE_ARGS -F "$PCAP_FILTER"
+	echo "${INSTANCE}."
+	ps h -C $NAME -o pid,args | \
+		awk "/$IFACE/ { print \$1 }" > /var/run/${INSTANCE}.pid
+}
+
+stop_instance () {
+	local IFACE=$1
+	local INSTANCE=${NAME}-${IFACE}
+	[ -f /var/run/${INSTANCE}.pid ] || return 0
+	echo -n "Stopping $DESC: "
+	start-stop-daemon --stop --quiet --oknodo \
+		--pidfile /var/run/${INSTANCE}.pid
+	echo "${INSTANCE}."
+	rm -f /var/run/${INSTANCE}.pid
+}
+
+startup () {
+	if [ -z "$INTERFACES" ] ; then
+		log_warning_msg \
+			"No interfaces configured in /etc/default/arpwatch, not starting"
+		exit 0
+	fi
+	for interface in $INTERFACES ; do
+		start_instance "$interface"
+	done
+}
+
+shutdown () {
+	if [ -z "$INTERFACES" ] ; then
+		exit 0
+	fi
+	for interface in $INTERFACES ; do
+		stop_instance "$interface"
+	done
+}
+
+case "$1" in
+  start)
+	startup
+	;;
+  stop)
+	shutdown
+	;;
+  reload)
+	echo "Reload operation not supported -- use restart."
+	exit 1
+	;;
+  restart|force-reload)
+	#
+	#	If the "reload" option is implemented, move the "force-reload"
+	#	option to the "reload" entry above. If not, "force-reload" is
+	#	just the same as "restart".
+	#
+	shutdown
+	sleep 1
+	startup
+	;;
+  status)
+	status_of_proc $DAEMON $NAME
+	;;
+  *)
+	N=/etc/init.d/$NAME
+	# echo "Usage: $N {start|stop|restart|reload|force-reload}" >&2
+	echo "Usage: $N {start|stop|restart|force-reload}" >&2
+	exit 1
+	;;
+esac
+
+exit 0

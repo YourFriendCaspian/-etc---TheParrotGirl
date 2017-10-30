@@ -1,0 +1,9 @@
+# Parameters for wmaloader
+
+# Which interface should wmaloader bind to?
+INTERFACE=eth0
+
+# Where is the firmware image? The default on the CD from Linksys is
+# /Program Files/Linksys Wireless-B Media Adapter/bootimg/squishguava
+IMAGE=/usr/lib/wmaloader/squishguava
+

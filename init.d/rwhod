@@ -1,0 +1,72 @@
+#!/bin/sh -e
+
+### BEGIN INIT INFO
+# Provides:          rwhod
+# Required-Start:    $remote_fs $network $syslog
+# Required-Stop:     $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Server for rwho and ruptime services
+# Description: Server for rwho and ruptime services
+### END INIT INFO
+
+# rwhod		Startup script for the rwhod server.
+#
+#		Modified for rwhod
+#		by Herbert Xu <herbert@debian.org>
+#		Written by Miquel van Smoorenburg <miquels@cistron.nl>.
+#		Modified for Debian GNU/Linux
+#		by Ian Murdock <imurdock@gnu.ai.mit.edu>.
+#               Improved for option handling and LSB compliance
+#               by Alberto Gonzalez Iniesta <agi@inittab.org>
+#
+# Version:	$Id: rwhod.init,v 1.5 2000/07/18 12:25:51 herbert Exp $
+
+test $DEBIAN_SCRIPT_DEBUG && set -v -x
+
+DESC="System status server"
+DAEMON="/usr/sbin/rwhod"
+CONF_FILE="/etc/default/rwhod"
+# default options. Change them in /etc/default/rwhod
+RWHOD_OPTIONS="-b"
+
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+if test -e $CONF_FILE ; then
+	. $CONF_FILE
+fi
+
+start_stop() {
+	case "$1" in
+	start)
+		log_daemon_msg "Starting $DESC" "rwhod"
+		start-stop-daemon --start --oknodo --quiet \
+				  --exec $DAEMON -- $RWHOD_OPTIONS
+		log_end_msg $?
+		;;
+	stop)
+		log_daemon_msg "Stopping $DESC" "rwhod"
+		start-stop-daemon --stop --oknodo --quiet \
+				  --exec $DAEMON
+		log_end_msg $?
+		;;
+	restart | force-reload)
+		start_stop stop
+		sleep 1
+		start_stop start
+		;;
+	status)
+		status_of_proc $DAEMON "rwhod" 
+		;;
+	*)
+		log_success_msg "Usage: $0 {start|stop|restart|force-reload|status}\n" >&2
+		exit 1
+		;;
+	esac
+}
+
+start_stop "$@"
+
+exit 0
