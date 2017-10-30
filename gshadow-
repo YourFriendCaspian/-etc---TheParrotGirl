@@ -2,7 +2,7 @@ root:*::
 daemon:*::
 bin:*::
 sys:*::
-adm:*::
+adm:*::yfc
 tty:*::
 disk:*::
 lp:*::
@@ -12,12 +12,12 @@ uucp:*::
 man:*::
 proxy:*::
 kmem:*::
-dialout:*::
-fax:*::
+dialout:*::yfc
+fax:*::yfc
 voice:*::
 cdrom:*::yfc
 floppy:*::yfc
-tape:*::
+tape:*::yfc
 sudo:*::yfc
 audio:*::pulse,yfc
 dip:*::yfc
@@ -61,7 +61,7 @@ messagebus:!::
 wmaloader:!::
 ssh:!::
 bluetooth:!::yfc
-lpadmin:!::
+lpadmin:!::yfc
 kvm:!::
 iocard:!::
 i2c:!::
@@ -92,3 +92,4 @@ yfc:!::
 mlocate:!::
 Debian-snmp:!::
 wireshark:!::
+gluster:!::

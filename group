@@ -2,7 +2,7 @@ root:x:0:
 daemon:x:1:
 bin:x:2:
 sys:x:3:
-adm:x:4:
+adm:x:4:yfc
 tty:x:5:
 disk:x:6:
 lp:x:7:
@@ -12,12 +12,12 @@ uucp:x:10:
 man:x:12:
 proxy:x:13:
 kmem:x:15:
-dialout:x:20:
-fax:x:21:
+dialout:x:20:yfc
+fax:x:21:yfc
 voice:x:22:
 cdrom:x:24:yfc
 floppy:x:25:yfc
-tape:x:26:
+tape:x:26:yfc
 sudo:x:27:yfc
 audio:x:29:pulse,yfc
 dip:x:30:yfc
@@ -61,7 +61,7 @@ messagebus:x:121:
 wmaloader:x:122:
 ssh:x:123:
 bluetooth:x:124:yfc
-lpadmin:x:125:
+lpadmin:x:125:yfc
 kvm:x:126:
 iocard:x:127:
 i2c:x:128:
@@ -84,7 +84,7 @@ libvirt:x:144:yfc
 libvirt-qemu:x:64055:libvirt-qemu
 avahi:x:145:
 usrp:x:146:
-sambashare:x:147:
+sambashare:x:147:yfc
 kpadmins:x:148:
 dradis:x:149:
 beef-xss:x:150:
