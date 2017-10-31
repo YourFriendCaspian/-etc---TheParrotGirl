@@ -106,6 +106,7 @@ audio/x-gsm; /usr/bin/play -t gsm %s
 audio/x-wav; /usr/bin/play -t wav %s
 application/x-dvi; /usr/bin/xdvi %s; description=TeX DVI; test=test -n "$DISPLAY"; nametemplate=%s.dvi
 text/plain; more %s; needsterminal
+application/vnd.debian.binary-package; gdebi-kde %s; test=test -n "$DISPLAY"
 inode/directory; kfmclient openURL %s inode/directory; test=test -n "$DISPLAY"
 text/html; kfmclient openURL %s text/html; test=test -n "$DISPLAY"
 application/xhtml+xml; kfmclient openURL %s text/html; test=test -n "$DISPLAY"
