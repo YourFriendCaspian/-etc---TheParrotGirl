@@ -18,7 +18,7 @@ DAEMON=/usr/sbin/irqbalance
 NAME=irqbalance
 SNAME=irqbalance
 DESC="SMP IRQ Balancer"
-PIDFILE="/var/run/$NAME.pid"
+PIDFILE="/run/$NAME.pid"
 PNAME="irqbalance"
 DOPTIONS=""
 

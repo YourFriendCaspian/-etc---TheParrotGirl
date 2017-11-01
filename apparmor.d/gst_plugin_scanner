@@ -7,6 +7,9 @@ profile gst_plugin_scanner {
   #include <abstractions/gstreamer>
   #include <abstractions/X>
 
+  # TODO: adjust when support finer-grained netlink rules
+  network netlink raw,
+
   /dev/ r,
   /dev/bus/usb/ r,
 
