@@ -11,3 +11,9 @@ UUID=d8d2b28e-9e22-4a0e-8f1a-ef1ff65e0390 /               ext4    errors=remount
 UUID=6c7ea659-3156-4563-af19-932e9bbc6148 /home           ext4    defaults        0       2
 # swap was on /dev/sda3 during installation
 UUID=a8dbea79-80d6-409c-9812-6a9769385f43 none            swap    sw              0       0
+
+#GhostDrive
+LABEL=GHOST_DRIVE	/home/yfc/GhostDrive	vfat	noauto,users,uid=1000,gid=1000,utf8,dmask=027,fmask=1 37 0 0
+
+#Development
+LABEL=DEVELOPMENT	/home/yfc/Development	vfat	noauto,users,uid=1000,gid=1000,utf8,dmask=027,fmask=1 37 0 0
