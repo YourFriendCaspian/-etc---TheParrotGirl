@@ -93,3 +93,6 @@ mlocate:!::
 Debian-snmp:!::
 wireshark:!::
 gluster:!::
+sddm:!::
+scanner:!::
+saned:!::

@@ -58,4 +58,5 @@ beef-xss:x:138:150::/var/lib/beef-xss:/bin/false
 yfc:x:1000:1000:YourFriendCaspian,,,:/home/yfc:/bin/bash
 Debian-snmp:x:123:151::/var/lib/snmp:/bin/false
 gluster:x:139:153::/var/lib/glusterd:/usr/sbin/nologin
-sddm:x:140:154:Simple Desktop Display Manager:/var/lib/sddm:/usr/sbin/nologin
+sddm:x:140:154:Simple Desktop Display Manager:/var/lib/sddm:/bin/false
+saned:x:141:156::/var/lib/saned:/usr/sbin/nologin

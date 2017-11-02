@@ -59,3 +59,4 @@ yfc:$6$9SAv5cQv$JGf.dfhJM2YC5X4u7i3jRkM0Av/uxdKFYEqwtOUzmMNNDMrIG5QATlLcBp.ycO3o
 Debian-snmp:!:17469:0:99999:7:::
 gluster:*:17469:0:99999:7:::
 sddm:*:17469:0:99999:7:::
+saned:*:17472:0:99999:7:::
