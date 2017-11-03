@@ -4,7 +4,7 @@ bin:*::
 sys:*::
 adm:*::yfc
 tty:*::
-disk:*::
+disk:*::yfc
 lp:*::
 mail:*::
 news:*::
@@ -35,7 +35,7 @@ sasl:*::
 plugdev:*::yfc
 staff:*::
 games:*::
-users:*::
+users:*::yfc
 nogroup:*::
 systemd-journal:!::
 systemd-timesync:!::
