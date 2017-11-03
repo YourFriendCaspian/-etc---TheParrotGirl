@@ -1,0 +1,19 @@
+[connection]
+id=South Africa
+uuid=c11ca8b3-41aa-4070-a225-c0bbb3c7b4dd
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=154.127.57.28
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=1191
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+
+[ipv4]
+method=auto

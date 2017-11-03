@@ -1,0 +1,20 @@
+[connection]
+id=India 2 TCP
+uuid=1ecab38f-c61d-440e-835b-34496976dd36
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=103.212.121.14
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=443
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+proto-tcp=yes
+
+[ipv4]
+method=auto

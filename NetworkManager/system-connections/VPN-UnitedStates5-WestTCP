@@ -1,0 +1,20 @@
+[connection]
+id=United States 5 - West TCP
+uuid=26bc869a-d3bb-4efa-8aad-96c5fe7f0097
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=66.63.177.132
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=443
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+proto-tcp=yes
+
+[ipv4]
+method=auto

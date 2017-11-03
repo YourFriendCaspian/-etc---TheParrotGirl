@@ -1,0 +1,20 @@
+[connection]
+id=Taiwan TCP
+uuid=29e55de9-0532-41d7-8a0a-59ddbf03a1b6
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=125.227.64.117
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=443
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+proto-tcp=yes
+
+[ipv4]
+method=auto

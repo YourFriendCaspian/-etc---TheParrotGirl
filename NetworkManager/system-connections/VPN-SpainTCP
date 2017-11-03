@@ -1,0 +1,20 @@
+[connection]
+id=Spain TCP
+uuid=e86c2a0a-0363-41e8-b619-6a692c899428
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=185.183.106.243
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=443
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+proto-tcp=yes
+
+[ipv4]
+method=auto

@@ -1,0 +1,20 @@
+[connection]
+id=Poland TCP 
+uuid=2843fe3f-4aad-4a4b-b6ed-18a02df4c0d6
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=212.7.218.176
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=443
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+proto-tcp=yes
+
+[ipv4]
+method=auto

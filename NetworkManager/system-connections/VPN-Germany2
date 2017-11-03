@@ -1,0 +1,19 @@
+[connection]
+id=Germany 2
+uuid=fb8fe60e-12eb-4628-afda-831f70f6dfa5
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=185.216.33.98
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=1191
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+
+[ipv4]
+method=auto

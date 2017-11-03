@@ -1,0 +1,19 @@
+[connection]
+id=New Zealand 
+uuid=c154184f-4cc5-4eee-91f8-e70d48576747
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=185.121.168.31
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=1191
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+
+[ipv4]
+method=auto

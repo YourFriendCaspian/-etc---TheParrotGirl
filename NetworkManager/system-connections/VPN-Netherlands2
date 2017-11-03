@@ -1,0 +1,19 @@
+[connection]
+id=Netherlands 2
+uuid=3eabf6f4-a348-433e-8116-a087866169ef
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=62.112.11.137
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=1191
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+
+[ipv4]
+method=auto

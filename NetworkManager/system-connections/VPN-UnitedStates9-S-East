@@ -1,0 +1,19 @@
+[connection]
+id=United States 9 - S-East
+uuid=08906f04-efb2-4b3b-9974-95ebf1337319
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=38.132.120.242
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=1191
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+
+[ipv4]
+method=auto

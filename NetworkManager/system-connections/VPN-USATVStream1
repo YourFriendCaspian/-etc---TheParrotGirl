@@ -1,0 +1,19 @@
+[connection]
+id=USA TV Stream 1
+uuid=d0c62f2c-84a9-4d43-b12d-8100fa7f02b5
+type=vpn
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=64.20.50.138
+cipher=DES-CBC
+comp-lzo=yes
+cert-pass-flags=1
+port=1191
+cert=/etc/openvpn/fordprefect.crt
+ca=/etc/openvpn/ca.crt
+key=/etc/openvpn/fordprefect.key
+
+[ipv4]
+method=auto
