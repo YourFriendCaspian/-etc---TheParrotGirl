@@ -35,7 +35,7 @@ sasl:*::
 plugdev:*::yfc
 staff:*::
 games:*::
-users:*::yfc
+users:*::yfc,root
 nogroup:*::
 systemd-journal:!::
 systemd-timesync:!::

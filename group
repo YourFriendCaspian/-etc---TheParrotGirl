@@ -96,3 +96,4 @@ gluster:x:153:
 sddm:x:154:
 scanner:x:155:saned
 saned:x:156:
+nm-openvpn:x:157:
