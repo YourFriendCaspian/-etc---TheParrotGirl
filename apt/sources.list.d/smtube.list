@@ -1,1 +1,2 @@
-deb http://download.opensuse.org/repositories/home:/smplayerdev/Debian_9.0/ /
+deb http://ppa.launchpad.net/rvm/smplayer/ubuntu artful main 
+deb-src http://ppa.launchpad.net/rvm/smplayer/ubuntu artful main
