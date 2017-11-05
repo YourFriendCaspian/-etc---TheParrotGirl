@@ -337,7 +337,7 @@ concurrent = 25
 # ex: delay = 1.5
 #     delay = 5
 #
-delay = 0.5 
+delay = 0.0 
 
 #
 # Connection timeout value. Set the value in seconds for socket 
@@ -444,8 +444,8 @@ benchmark = false
 # ex: accept-encoding = 
 #     accept-encoding = gzip
 #     accept-encoding = deflate
-#     accept-encoding = gzip;deflate
-accept-encoding = gzip;deflate
+#     accept-encoding = gzip, deflate
+accept-encoding = gzip, deflate
 
 #
 # URL escaping was first added to version 3.0.3. It was considered
