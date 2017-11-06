@@ -1,1 +1,2 @@
-deb http://ppa.launchpad.net/papirus/papirus/ubuntu xenial main
+deb http://ppa.launchpad.net/papirus/papirus/ubuntu/ xenial main 
+
