@@ -98,3 +98,4 @@ scanner:x:155:saned
 saned:x:156:
 nm-openvpn:x:157:
 colord:x:158:
+docker:x:998:yfc

@@ -17,3 +17,6 @@ LABEL=GHOST_DRIVE	/home/yfc/GhostDrive	vfat	noauto,users,uid=1000,gid=1000,utf8,
 
 #Development
 LABEL=DEVELOPMENT	/home/yfc/Development	vfat	noauto,users,uid=1000,gid=1000,utf8,dmask=027,fmask=1 37 0 0
+
+#Docker
+cgroup  /sys/fs/cgroup  cgroup  defaults  0   0
