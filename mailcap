@@ -115,6 +115,16 @@ audio/basic; /usr/bin/play -t au %s
 audio/x-aiff; /usr/bin/play -t aiff %s
 audio/x-gsm; /usr/bin/play -t gsm %s
 audio/x-wav; /usr/bin/play -t wav %s
+image/gif; sxiv '%s'; test=test -n "$DISPLAY"
+image/jpeg; sxiv '%s'; test=test -n "$DISPLAY"
+image/png; sxiv '%s'; test=test -n "$DISPLAY"
+image/tiff; sxiv '%s'; test=test -n "$DISPLAY"
+image/x-ms-bmp; sxiv '%s'; test=test -n "$DISPLAY"
+image/x-portable-anymap; sxiv '%s'; test=test -n "$DISPLAY"
+image/x-portable-bitmap; sxiv '%s'; test=test -n "$DISPLAY"
+image/x-portable-graymap; sxiv '%s'; test=test -n "$DISPLAY"
+image/x-portable-pixmap; sxiv '%s'; test=test -n "$DISPLAY"
+image/x-xpixmap; sxiv '%s'; test=test -n "$DISPLAY"
 application/x-dvi; /usr/bin/xdvi %s; description=TeX DVI; test=test -n "$DISPLAY"; nametemplate=%s.dvi
 application/x-bittorrent; transmission-gtk %s; description="GTK-based BitTorrent client"; test=test -n "$DISPLAY"
 text/plain; more %s; needsterminal
@@ -762,6 +772,10 @@ video/x-theora; smplayer -add-to-playlist %s; test=test -n "$DISPLAY"
 video/webm; smplayer -add-to-playlist %s; test=test -n "$DISPLAY"
 text/x-apt-sources-list; software-properties-kde %s; test=test -n "$DISPLAY"
 application/x-sqlite; sqlitebrowser %s; test=test -n "$DISPLAY"
+image/gif; stegosuite %s; test=test -n "$DISPLAY"
+image/bmp; stegosuite %s; test=test -n "$DISPLAY"
+image/jpeg; stegosuite %s; test=test -n "$DISPLAY"
+image/png; stegosuite %s; test=test -n "$DISPLAY"
 message/rfc822; /usr/bin/thunderbird %s; test=test -n "$DISPLAY"
 x-scheme-handler/mailto; /usr/bin/thunderbird %s; test=test -n "$DISPLAY"
 text/calendar; /usr/bin/thunderbird %s; test=test -n "$DISPLAY"

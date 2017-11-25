@@ -1,0 +1,3 @@
+if [ -f /usr/bin/x11-touchscreen-calibrator ]; then
+    /usr/bin/x11-touchscreen-calibrator -d
+fi
