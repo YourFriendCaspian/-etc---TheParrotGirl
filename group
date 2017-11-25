@@ -41,7 +41,6 @@ systemd-journal:x:101:
 systemd-timesync:x:102:
 systemd-network:x:103:
 systemd-resolve:x:104:
-systemd-bus-proxy:x:105:
 input:x:106:
 crontab:x:107:
 netdev:x:108:yfc

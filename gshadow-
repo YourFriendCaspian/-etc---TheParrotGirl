@@ -98,4 +98,4 @@ scanner:!::saned
 saned:!::
 nm-openvpn:!::
 colord:!::
-docker:!::yfc
+docker:!::yfc,root
