@@ -1,2 +1,3 @@
-deb http://ppa.launchpad.net/smoser/ppa/ubuntu artful main 
-deb-src http://ppa.launchpad.net/smoser/ppa/ubuntu artful main
+deb http://ppa.launchpad.net/smoser/ppa/ubuntu/ artful main 
+deb-src http://ppa.launchpad.net/smoser/ppa/ubuntu/ artful main 
+
