@@ -2,19 +2,26 @@
 id=United States 6 - N-East TCP
 uuid=e7074028-0bdd-4c32-8b95-eb43258bb9bf
 type=vpn
+permissions=
 
 [vpn]
-service-type=org.freedesktop.NetworkManager.openvpn
-connection-type=tls
-remote=64.187.238.27
+ca=/etc/openvpn/ca.crt
+cert=/etc/openvpn/fordprefect.crt
+cert-pass-flags=1
 cipher=DES-CBC
 comp-lzo=yes
-cert-pass-flags=1
-port=443
-cert=/etc/openvpn/fordprefect.crt
-ca=/etc/openvpn/ca.crt
+connection-type=tls
 key=/etc/openvpn/fordprefect.key
+port=443
 proto-tcp=yes
+remote=64.187.238.27
+service-type=org.freedesktop.NetworkManager.openvpn
 
 [ipv4]
+dns-search=
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
 method=auto

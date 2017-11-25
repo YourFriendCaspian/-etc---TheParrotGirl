@@ -1,6 +1,6 @@
 [connection]
 id=ShadyOak-5GHz
-uuid=e31987f7-c040-4b42-8c66-8ebb9ae3f162
+uuid=b0d80d50-b279-4ba5-af67-45d63cce4064
 type=wifi
 permissions=user:yfc:;
 
@@ -13,7 +13,7 @@ ssid=ShadyOak-5GHz
 [wifi-security]
 auth-alg=open
 key-mgmt=wpa-psk
-psk=LookOut104
+psk-flags=1
 
 [ipv4]
 dns-search=

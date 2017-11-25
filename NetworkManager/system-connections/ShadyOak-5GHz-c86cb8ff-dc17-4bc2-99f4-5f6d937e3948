@@ -1,6 +1,6 @@
 [connection]
-id=5661-5Ghz
-uuid=dcc349a8-3328-42fe-a1f3-3b148788651f
+id=ShadyOak-5GHz
+uuid=c86cb8ff-dc17-4bc2-99f4-5f6d937e3948
 type=wifi
 permissions=user:yfc:;
 
@@ -8,7 +8,7 @@ permissions=user:yfc:;
 mac-address=00:C0:CA:95:3E:10
 mac-address-blacklist=
 mode=infrastructure
-ssid=5661-5Ghz
+ssid=ShadyOak-5GHz
 
 [wifi-security]
 auth-alg=open
