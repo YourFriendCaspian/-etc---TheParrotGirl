@@ -3,7 +3,5 @@
 # deb cdrom:[Debian GNU/Linux 3.7 _Parrot_ - Official Snapshot amd64 LIVE/INSTALL Binary 20170707-15:53]/ parrot contrib main non-free 
 
 # deb cdrom:[Debian GNU/Linux 3.7 _Parrot_ - Official Snapshot amd64 LIVE/INSTALL Binary 20170707-15:53]/ parrot contrib main non-free 
-## Depôt MultiSystem
-deb http://liveusb.info/multisystem/depot/ all main 
 
 
