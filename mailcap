@@ -130,6 +130,7 @@ video/ogg; kodi %s; description="Ogg Video"
 application/x-ms-asf-plugin; kodi %s; description="Windows Media Video"
 application/x-mplayer2; kodi %s; description="Windows Media"
 audio/mpeg; mpg123 -q %s; needsterminal
+application/x-bittorrent; qbittorrent %s; description="BitTorrent client"; test=test -n "$DISPLAY"; nametemplate=%s.torrent
 audio/basic; /usr/bin/play -t au %s
 audio/x-aiff; /usr/bin/play -t aiff %s
 audio/x-gsm; /usr/bin/play -t gsm %s
@@ -221,6 +222,7 @@ x-content/software; caja-autorun-software %s; test=test -n "$DISPLAY"
 inode/directory; caja --no-desktop %s; test=test -n "$DISPLAY"
 application/x-mate-saved-search; caja --no-desktop %s; test=test -n "$DISPLAY"
 inode/directory; chirpw %s; test=test -n "$DISPLAY"
+x-scheme-handler/mailto; claws-mail --compose --attach %s; test=test -n "$DISPLAY"
 application/ogg; clementine --next %s; test=test -n "$DISPLAY"
 application/x-ogg; clementine --next %s; test=test -n "$DISPLAY"
 application/x-ogm-audio; clementine --next %s; test=test -n "$DISPLAY"
@@ -603,6 +605,7 @@ application/vnd.kde.fontspackage; kfontview %s; test=test -n "$DISPLAY"
 application/x-ksysguard; ksysguard %s; test=test -n "$DISPLAY"
 application/x-kwallet; kwalletmanager5 %s; test=test -n "$DISPLAY"
 text/plain; kwrite %s; test=test -n "$DISPLAY"
+application/x-keepass2; keepassxc %s; test=test -n "$DISPLAY"
  text/x-c++src; qtcreator %s; test=test -n "$DISPLAY"
 text/x-c++hdr; qtcreator %s; test=test -n "$DISPLAY"
 text/x-xsrc; qtcreator %s; test=test -n "$DISPLAY"
