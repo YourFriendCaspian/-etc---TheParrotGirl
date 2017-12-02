@@ -2,7 +2,7 @@
 id=ShadyOak-5GHz
 uuid=b0d80d50-b279-4ba5-af67-45d63cce4064
 type=wifi
-permissions=user:yfc:;
+permissions=
 
 [wifi]
 mac-address=74:DF:BF:71:E3:EB
@@ -11,7 +11,6 @@ mode=infrastructure
 ssid=ShadyOak-5GHz
 
 [wifi-security]
-auth-alg=open
 key-mgmt=wpa-psk
 psk-flags=1
 

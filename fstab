@@ -13,10 +13,13 @@ UUID=6c7ea659-3156-4563-af19-932e9bbc6148 /home           ext4    defaults      
 UUID=a8dbea79-80d6-409c-9812-6a9769385f43 none            swap    sw              0       0
 
 #GhostDrive
-LABEL=GHOST_DRIVE	/home/yfc/GhostDrive	vfat	noauto,users,uid=1000,gid=1000,utf8,dmask=027,fmask=1 37 0 0
+LABEL=GHOST_DRIVE	/home/yfc/GhostDrive	vfat	noauto,users,uid=1000,gid=1000,utf8,dmask=027,fmask=137 0 0
 
 #Development
-LABEL=DEVELOPMENT	/home/yfc/Development	vfat	noauto,users,uid=1000,gid=1000,utf8,dmask=027,fmask=1 37 0 0
+LABEL=DEVELOPMENT	/home/yfc/Development	vfat	noauto,users,uid=1000,gid=1000,utf8,dmask=027,fmask=137 0 0
+
+#MediaDrive
+LABEL=MediaDrive	/home/yfc/MediaDrive	ntfs-3g		noauto,users,permissions	0	0
 
 #Docker
 cgroup  /sys/fs/cgroup  cgroup  defaults  0   0

@@ -3,7 +3,6 @@ id=Allyoop
 uuid=f1a0b1d4-85c9-49f9-8b85-4e96f299821a
 type=wifi
 permissions=
-secondaries=e7074028-0bdd-4c32-8b95-eb43258bb9bf;
 
 [wifi]
 mac-address=74:DF:BF:71:E3:EB
