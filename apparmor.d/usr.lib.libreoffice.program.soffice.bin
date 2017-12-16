@@ -60,7 +60,7 @@
 
 #include <tunables/global>
 
-profile libreoffice-soffice /usr/lib/libreofficeprogram/soffice.bin {
+profile libreoffice-soffice /usr/lib/libreoffice/program/soffice.bin {
   #include <abstractions/private-files-strict>
 
   #include <abstractions/audio>
@@ -120,11 +120,11 @@ profile libreoffice-soffice /usr/lib/libreofficeprogram/soffice.bin {
 
   /usr/lib{,32,64}/jvm/                         r,
   /usr/lib{,32,64}/jvm/**                       r,
-  /usr/lib/libreoffice**                        rw,
-  /usr/lib/libreoffice**.so                     m,
-  /usr/lib/libreofficeprogram/soffice.bin       mix,
-  /usr/lib/libreofficeprogram/xpdfimport        px,
-  /usr/lib/libreofficeprogram/senddoc           px,
+  /usr/lib/libreoffice/**                        rw,
+  /usr/lib/libreoffice/**.so                     m,
+  /usr/lib/libreoffice/program/soffice.bin       mix,
+  /usr/lib/libreoffice/program/xpdfimport        px,
+  /usr/lib/libreoffice/program/senddoc           px,
   /usr/bin/xdg-open                 rPUx,
 
   /usr/share/java/**.jar                r,

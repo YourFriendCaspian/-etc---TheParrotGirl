@@ -12,7 +12,7 @@
 
 #include <tunables/global>
 
-profile libreoffice-oopslash /usr/lib/libreofficeprogram/oosplash {
+profile libreoffice-oopslash /usr/lib/libreoffice/program/oosplash {
   #include <abstractions/base>
 
   /etc/libreoffice/                     r,
@@ -22,9 +22,9 @@ profile libreoffice-oopslash /usr/lib/libreofficeprogram/oosplash {
   /run/nscd/passwd                      r,
   /usr/lib{,32,64}/ure/bin/javaldx      rmpux,
   /usr/share/libreoffice/program/*      r,
-  /usr/lib/libreofficeprogram/** 			r,
-  /usr/lib/libreofficeprogram/soffice.bin rmpx,
-  /usr/lib/libreofficeprogram/javaldx rmpux,
+  /usr/lib/libreoffice/program/** 			r,
+  /usr/lib/libreoffice/program/soffice.bin rmpx,
+  /usr/lib/libreoffice/program/javaldx rmpux,
   owner @{HOME}/.Xauthority             r,
   owner @{HOME}/.config/libreoffice{,dev}/?/user/uno_packages/cache/log.txt rw,
   unix peer=(addr=@/tmp/.ICE-unix/* label=unconfined),

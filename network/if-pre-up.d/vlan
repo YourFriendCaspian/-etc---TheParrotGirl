@@ -49,7 +49,15 @@ case "$IFACE" in
   ;;
 esac
 
-if [ -n "$IF_VLAN_RAW_DEVICE" ]; then
+if [ -n "$IF_MTU" -a -n "$IF_VLAN_RAW_DEVICE" ]; then
+    CUR_DEV_MTU=`cat /sys/class/net/$IF_VLAN_RAW_DEVICE/mtu`
+    # increase the vlan raw device mtu if needed
+    if [ -n "$CUR_DEV_MTU" ] && [ $CUR_DEV_MTU -lt $IF_MTU ]; then
+        ip link set dev $IF_VLAN_RAW_DEVICE mtu $IF_MTU
+    fi
+fi
+
+if [ -n "$IF_VLAN_RAW_DEVICE" ] && [ ! -d /sys/class/net/$IFACE ]; then
     if [ ! -x /sbin/vconfig ]; then
         exit 0
     fi

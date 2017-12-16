@@ -13,6 +13,8 @@ then
 	if [ -n "$IF_IP_RP_FILTER" ]; then
 		if [ "$IF_IP_RP_FILTER" -eq "0" ]; then
 			echo 0 > "/proc/sys/net/ipv4/conf/$IFACE/rp_filter"
+		elif [ "$IF_IP_RP_FILTER" -eq "2" ]; then
+			echo 2 > "/proc/sys/net/ipv4/conf/$IFACE/rp_filter"
 		else
 			echo 1 > "/proc/sys/net/ipv4/conf/$IFACE/rp_filter"
 		fi
